@@ -30,7 +30,7 @@ fobj = @Objfun;
 noP = 100;
 maxIter = 1000;
      
-              [bestFitness, bestPosition, CSAConvCurve] =CapuchinAlg(noP,maxIter,lb,ub,dim,fobj);
+              [bestFitness, bestPosition, CSAConvCurve] =CapSA(noP,maxIter,lb,ub,dim,fobj);
 
               disp(['===> The optimal fitness value found by Standard CapSA for problem is ', num2str(bestFitness, 10)]); 
      
