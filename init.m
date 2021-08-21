@@ -1,10 +1,10 @@
-%% CapSA (Capuchin Swarm Algorithm)
+%% CapSA (Capuchin search Algorithm)
 % Citation details:
 % Braik, Malik, Alaa Sheta, and Heba Al-Hiary. "A novel meta-heuristic search algorithm for solving 
-% optimization problems: capuchin search algorithm.
+% optimization problems: Capuchin search algorithm.
 % " Neural Computing and Applications (2020): 1-33
 
-% Programmed by Malik Braik & Prof. Alaa Sheta
+% Programmed by Malik Braik
 % Al-Balqa Applied University (BAU) %
 % Date of programming: 2020 %
 % -------------------------------------------------
@@ -17,10 +17,22 @@
 %____________________________________________________________________________________
 
 % This function initialize the first population of chameleons
-function pos=init(searchAgents,dim,u,l)
+function pos=initialization(searchAgents,dim,u,l)
 
-for i=1:searchAgents 
-    for j=1:dim
-        pos(i,j)=round(l(j)-rand()*(l(j)-u(j)));
+% number of boundaries
+Bound_no= size(u,1); 
+
+% If the boundaries of all variables are equal, and user enters a signle number for both u and l
+if Bound_no==1
+    pos=rand(searchAgents,dim).*(u-l)+l;
+end
+
+% If each variable has a different boundary l and u
+if Bound_no>1
+    for i=1:dim
+        u_i=u(i);
+        l_i=l(i);
+        pos(:,i)=rand(searchAgents,1).*(u_i-l_i)+l_i;
     end
 end
+
